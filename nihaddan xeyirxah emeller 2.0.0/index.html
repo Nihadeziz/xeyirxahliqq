@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadratic Equation Solver</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result-box {
+            margin-top: 20px;
+            padding: 15px;
+            text-align: center;
+            background-color: #e7f4e4;
+            border: 1px solid #4CAF50;
+            border-radius: 4px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Quadratic Equation Solver</h2>
+
+    <label for="a">a:</label>
+    <input type="number" id="a" placeholder="Dəyəri daxil edin" value="1">
+
+    <label for="b">b:</label>
+    <input type="number" id="b" placeholder="Dəyəri daxil edin" value="-3">
+
+    <label for="c">c:</label>
+    <input type="number" id="c" placeholder="Dəyəri daxil edin" value="2">
+
+    <button onclick="solveQuadratic()">Tənliyi həll et</button>
+
+    <div id="output"></div>
+</div>
+
+<script>
+function solveQuadratic() {
+    let a = parseFloat(document.getElementById("a").value);
+    let b = parseFloat(document.getElementById("b").value);
+    let c = parseFloat(document.getElementById("c").value);
+
+    let discriminant = b * b - 4 * a * c;
+    let output = '';
+
+    if (discriminant > 0) {
+        let x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+        let x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+        output = `<div class="result-box">İki həqiqi kök:<br>x₁ = ${x1.toFixed(2)}<br>x₂ = ${x2.toFixed(2)}</div>`;
+    } else if (discriminant === 0) {
+        let x = -b / (2 * a);
+        output = `<div class="result-box">Bir həqiqi kök:<br>x = ${x.toFixed(2)}</div>`;
+    } else {
+        output = `<div class="result-box">Həqiqi kök yoxdur (kompleks köklər)</div>`;
+    }
+
+    document.getElementById("output").innerHTML = output;
+}
+</script>
+
+</body>
+</html>
